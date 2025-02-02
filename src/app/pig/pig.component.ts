@@ -1,11 +1,104 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { PigService } from '../services/pig.service';
+
 @Component({
   selector: 'app-pig',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatIconModule, CommonModule, HttpClientModule],
   templateUrl: './pig.component.html',
   styleUrl: './pig.component.css',
 })
-export class PigComponent {
+export class PigComponent implements OnInit {
   imageUrl: string = 'assets/images/pig.jpg';
+  status: string = '';
+  type: string = 'Farm Pig';
+  initialStatus: string = '';
+  putinStatus: string = '';
+  audioContext: AudioContext = new (window.AudioContext ||
+    (window as any).webkitAudioContext)();
+  audioBuffer: AudioBuffer | null = null;
+  currentSource: AudioBufferSourceNode | null = null;
+
+  constructor(private pigService: PigService) {}
+
+  ngOnInit(): void {
+    this.pigService.getPigData().subscribe(
+      (data) => {
+        console.log(data);
+        this.status = data.initial;
+        this.putinStatus = data.putin;
+        this.initialStatus = data.initial;
+      },
+      (error) => {
+        console.error('Error fetching pig data:', error);
+      }
+    );
+  }
+
+  changeImage(): void {
+    if (this.imageUrl === 'assets/images/pig.jpg') {
+      this.imageUrl = 'assets/images/putin.jpg';
+      this.status = this.putinStatus;
+    } else {
+      this.imageUrl = 'assets/images/pig.jpg';
+      this.status = this.initialStatus;
+    }
+  }
+
+  onVolumeIconClick(): void {
+    if (this.imageUrl === 'assets/images/putin.jpg') {
+      this.pigService.sendMessage('putin').subscribe(
+        (response) => {
+          console.log('Message sent successfully:', response);
+          this.playAudio(response.audioUrl);
+        },
+        (error) => {
+          console.error('Error sending message:', error);
+        }
+      );
+      return;
+    }
+
+    if (this.imageUrl === 'assets/images/pig.jpg') {
+      this.pigService.sendMessage('georgia').subscribe(
+        (response) => {
+          console.log('Message sent successfully:', response);
+          this.playAudio(response.audioUrl);
+        },
+        (error) => {
+          console.error('Error sending message:', error);
+        }
+      );
+    }
+  }
+
+  async playAudio(audioUrl: string): Promise<void> {
+    try {
+      if (this.currentSource) {
+        this.currentSource.stop();
+      }
+
+      const response = await fetch(audioUrl);
+      const arrayBuffer = await response.arrayBuffer();
+
+      const buffer = await this.audioContext.decodeAudioData(arrayBuffer);
+      this.audioBuffer = buffer;
+
+      const source = this.audioContext.createBufferSource();
+      source.buffer = this.audioBuffer;
+
+      source.connect(this.audioContext.destination);
+
+      source.start();
+      console.log('Audio playing...');
+
+      this.currentSource = source;
+    } catch (error) {
+      console.error('Error playing audio:', error);
+    }
+  }
 }

@@ -1,3 +1,21 @@
 <div class="pig-container">
-  <img [src]="imageUrl" alt="Pig Image" />
+  <mat-card class="pig-card">
+    <div class="image-container">
+      <img
+        [src]="imageUrl"
+        alt="Pig Image"
+        class="pig-image"
+        (click)="changeImage()"
+      />
+      <mat-icon class="audio-icon" (click)="onVolumeIconClick()"
+        >volume_up</mat-icon
+      >
+    </div>
+
+    <mat-card-content>
+      <h3 class="pig-title">🐷 Pig Information</h3>
+      <p><strong>Status:</strong> {{ status }}</p>
+      <p><strong>Type:</strong> {{ type }}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
