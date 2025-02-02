@@ -22,6 +22,8 @@ export class PigComponent implements OnInit {
     (window as any).webkitAudioContext)();
   audioBuffer: AudioBuffer | null = null;
   currentSource: AudioBufferSourceNode | null = null;
+  isPlaying: boolean = false;
+  isPlayPauseIconVisible: boolean = false;
 
   constructor(private pigService: PigService) {}
 
@@ -50,6 +52,8 @@ export class PigComponent implements OnInit {
   }
 
   onVolumeIconClick(): void {
+    this.isPlayPauseIconVisible = true;
+
     if (this.imageUrl === 'assets/images/putin.jpg') {
       this.pigService.sendMessage('putin').subscribe(
         (response) => {
@@ -82,6 +86,10 @@ export class PigComponent implements OnInit {
         this.currentSource.stop();
       }
 
+      if (this.audioContext.state === 'suspended') {
+        await this.audioContext.resume();
+      }
+
       const response = await fetch(audioUrl);
       const arrayBuffer = await response.arrayBuffer();
 
@@ -97,8 +105,21 @@ export class PigComponent implements OnInit {
       console.log('Audio playing...');
 
       this.currentSource = source;
+      this.isPlaying = true;
     } catch (error) {
       console.error('Error playing audio:', error);
+    }
+  }
+
+  togglePlayPause(): void {
+    if (this.isPlaying) {
+      this.audioContext.suspend().then(() => {
+        this.isPlaying = false;
+      });
+    } else {
+      this.audioContext.resume().then(() => {
+        this.isPlaying = true;
+      });
     }
   }
 }

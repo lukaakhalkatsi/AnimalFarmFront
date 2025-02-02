@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .pig-card {
@@ -12,93 +13,60 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-container {
-  position: relative;
+.pig-image {
   width: 100%;
+}
+
+.pig-card {
+  width: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-container {
+  width: 100%;
+  overflow: hidden;
 }
 
 .pig-image {
   width: 100%;
-  .pig-container {
-    height: 50svh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-  }
-
-  .pig-card {
-    width: 420px;
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .pig-card:hover {
-    transform: scale(1.05);
-  }
-
-  .image-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .pig-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 16px 16px 0 0;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .pig-card:hover .pig-image {
-    transform: scale(1.1);
-  }
-
-  .audio-icon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  }
-
-  .audio-icon:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: black;
-  }
-
-  .pig-title {
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 1.4rem;
-    text-align: center;
-    color: #333;
-  }
-
   height: auto;
   display: block;
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.3s ease-in-out;
 }
 
-.audio-icon {
+.pig-card:hover .pig-image {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.icon-container {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
+  color: white;
   border-radius: 50%;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .pig-title {
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #333;
+}
+
+.pig-image {
+  height: auto;
+  display: block;
+  border-radius: 12px 12px 0 0;
+}
+
+.hidden {
+  display: none;
 }

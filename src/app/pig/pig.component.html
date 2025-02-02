@@ -7,9 +7,15 @@
         class="pig-image"
         (click)="changeImage()"
       />
-      <mat-icon class="audio-icon" (click)="onVolumeIconClick()"
-        >volume_up</mat-icon
-      >
+      <div class="icon-container">
+        <mat-icon
+          (click)="togglePlayPause()"
+          [class.hidden]="!isPlayPauseIconVisible"
+        >
+          {{ isPlaying ? "pause" : "play_arrow" }}
+        </mat-icon>
+        <mat-icon (click)="onVolumeIconClick()">volume_up</mat-icon>
+      </div>
     </div>
 
     <mat-card-content>
