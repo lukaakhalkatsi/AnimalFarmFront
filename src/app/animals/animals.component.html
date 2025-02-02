@@ -1,0 +1,28 @@
+<!-- src/app/animals/animals.component.html -->
+<div class="animals-container">
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="animals.length > 0; else noAnimals" class="cards-wrapper">
+    <mat-card
+      *ngFor="let animal of animals | slice : 0 : 3"
+      class="animal-card"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ animal.name }}</mat-card-title>
+      </mat-card-header>
+
+      <img mat-card-image [src]="animal.imageUrl" alt="{{ animal.name }}" />
+
+      <mat-card-content>
+        <p><strong>Type:</strong> {{ animal.type }}</p>
+        <p><strong>Feed Number:</strong> {{ animal.feedNumber }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #noAnimals>
+    <p>No animals found.</p>
+  </ng-template>
+</div>
