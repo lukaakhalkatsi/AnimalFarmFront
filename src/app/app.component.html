@@ -4,6 +4,6 @@
 <div class="app-overlay"></div>
 
 <div class="container">
-  <app-pig></app-pig>
-  <app-animals></app-animals>
+  <app-pig #pig></app-pig>
+  <app-animals (animalFed)="pig.showHappyStatus($event)"></app-animals>
 </div>

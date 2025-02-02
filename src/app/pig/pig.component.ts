@@ -14,10 +14,12 @@ import { PigService } from '../services/pig.service';
 })
 export class PigComponent implements OnInit {
   imageUrl: string = 'assets/images/pig.jpg';
+  happyImageUrl: string = 'assets/images/happypig.jpg';
   status: string = '';
   type: string = 'Farm Pig';
   initialStatus: string = '';
   putinStatus: string = '';
+  initialImageUrl: string = this.imageUrl;
   audioContext: AudioContext = new (window.AudioContext ||
     (window as any).webkitAudioContext)();
   audioBuffer: AudioBuffer | null = null;
@@ -121,5 +123,15 @@ export class PigComponent implements OnInit {
         this.isPlaying = true;
       });
     }
+  }
+
+  showHappyStatus(happyMessage: string): void {
+    this.status = happyMessage;
+    this.imageUrl = this.happyImageUrl;
+
+    setTimeout(() => {
+      this.status = this.initialStatus;
+      this.imageUrl = this.initialImageUrl;
+    }, 3000);
   }
 }

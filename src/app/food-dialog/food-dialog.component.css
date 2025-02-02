@@ -1,0 +1,12 @@
+mat-dialog-content {
+  padding: 10px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+  cursor: pointer;
+}

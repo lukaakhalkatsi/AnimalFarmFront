@@ -1,14 +1,10 @@
-<!-- src/app/animals/animals.component.html -->
 <div class="animals-container">
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
 
   <div *ngIf="animals.length > 0; else noAnimals" class="cards-wrapper">
-    <mat-card
-      *ngFor="let animal of animals | slice : 0 : 3"
-      class="animal-card"
-    >
+    <mat-card *ngFor="let animal of animals" class="animal-card">
       <mat-card-header>
         <mat-card-title>{{ animal.name }}</mat-card-title>
       </mat-card-header>
@@ -19,6 +15,12 @@
         <p><strong>Type:</strong> {{ animal.type }}</p>
         <p><strong>Feed Number:</strong> {{ animal.feedNumber }}</p>
       </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="secondary" (click)="openFoodDialog(animal)">
+          View Food List
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
 
