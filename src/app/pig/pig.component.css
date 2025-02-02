@@ -1,0 +1,11 @@
+.pig-container {
+  height: 50svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  height: 80%;
+  border-radius: 5px;
+}
