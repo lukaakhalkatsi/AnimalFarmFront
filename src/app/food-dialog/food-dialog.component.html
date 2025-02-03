@@ -1,12 +1,26 @@
 <h2 mat-dialog-title>Food List for {{ data.name }}</h2>
-<mat-dialog-content>
-  <ul>
-    <li *ngFor="let food of foodList" (click)="sendFoodSelection(food)">
-      {{ food }}
-    </li>
-  </ul>
+
+<mat-dialog-content class="food-list">
+  <mat-list>
+    <mat-list-item
+      *ngFor="let food of foodList"
+      (click)="selectFood(food)"
+      [class.selected]="food === selectedFood"
+    >
+      <span>{{ food }}</span>
+    </mat-list-item>
+  </mat-list>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="closeDialog()">Close</button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="selectedFood"
+    (click)="sendFoodSelection(selectedFood)"
+  >
+    Feed {{ data.name }}
+  </button>
 </mat-dialog-actions>

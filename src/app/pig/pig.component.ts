@@ -113,6 +113,30 @@ export class PigComponent implements OnInit {
     }
   }
 
+  async playHappySound(): Promise<void> {
+    try {
+      const feedAudioContext = new (window.AudioContext ||
+        (window as any).webkitAudioContext)();
+
+      const response = await fetch('audio/thanks.mp3');
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = await feedAudioContext.decodeAudioData(arrayBuffer);
+
+      const source = feedAudioContext.createBufferSource();
+      source.buffer = buffer;
+      source.connect(feedAudioContext.destination);
+
+      source.start();
+      console.log('Playing happy sound...');
+
+      source.onended = () => {
+        feedAudioContext.close();
+      };
+    } catch (error) {
+      console.error('Error playing happy sound:', error);
+    }
+  }
+
   togglePlayPause(): void {
     if (this.isPlaying) {
       this.audioContext.suspend().then(() => {
@@ -128,10 +152,11 @@ export class PigComponent implements OnInit {
   showHappyStatus(happyMessage: string): void {
     this.status = happyMessage;
     this.imageUrl = this.happyImageUrl;
+    this.playHappySound();
 
     setTimeout(() => {
       this.status = this.initialStatus;
       this.imageUrl = this.initialImageUrl;
-    }, 3000);
+    }, 5000);
   }
 }

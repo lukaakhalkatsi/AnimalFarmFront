@@ -1,12 +1,24 @@
-mat-dialog-content {
-  padding: 10px;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 5px;
+.food-list mat-list-item {
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.food-list mat-list-item:hover {
+  background: rgba(0, 150, 136, 0.1);
+}
+
+.selected {
+  background: rgba(0, 150, 136, 0.2) !important;
+  font-weight: bold;
+}
+
+.check-icon {
+  color: #009688;
 }
