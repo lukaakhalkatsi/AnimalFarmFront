@@ -1,28 +1,21 @@
 .pig-container {
-  height: 50svh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  padding-top: 40px;
 }
 
 .pig-card {
-  width: 400px;
+  max-width: 350px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .pig-image {
   width: 100%;
-}
-
-.pig-card {
-  width: 350px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease-in-out;
 }
 
 .image-container {
