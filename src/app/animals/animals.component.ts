@@ -5,11 +5,19 @@ import { AnimalsService } from '../services/animals.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FoodDialogComponent } from '../food-dialog/food-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-animals',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './animals.component.html',
   styleUrl: './animals.component.css',
 })
@@ -21,6 +29,7 @@ export class AnimalsComponent implements OnInit {
 
   constructor(
     private animalsService: AnimalsService,
+    public loadingService: LoadingService,
     public dialog: MatDialog
   ) {}
 
@@ -29,6 +38,7 @@ export class AnimalsComponent implements OnInit {
   }
 
   fetchAnimals(): void {
+    this.loadingService.setLoading(true);
     this.animalsService.getAnimals().subscribe(
       (data) => {
         console.log(data);
@@ -38,10 +48,12 @@ export class AnimalsComponent implements OnInit {
             .toLowerCase()
             .replace(' ', '_')}.jpg`,
         }));
+        this.loadingService.setLoading(false);
       },
       (error) => {
         console.error('Error fetching animals:', error);
         this.errorMessage = 'Failed to fetch animals. Please try again later.';
+        this.loadingService.setLoading(false);
       }
     );
   }

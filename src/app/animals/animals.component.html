@@ -3,7 +3,17 @@
     {{ errorMessage }}
   </div>
 
-  <div *ngIf="animals.length > 0; else noAnimals" class="cards-wrapper">
+  <div *ngIf="loadingService.loading$ | async" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div
+    *ngIf="
+      !(loadingService.loading$ | async) && animals.length > 0;
+      else noAnimals
+    "
+    class="cards-wrapper"
+  >
     <mat-card *ngFor="let animal of animals" class="animal-card">
       <mat-card-header>
         <mat-card-title>{{ animal.name }}</mat-card-title>
@@ -24,7 +34,5 @@
     </mat-card>
   </div>
 
-  <ng-template #noAnimals>
-    <p>No animals found.</p>
-  </ng-template>
+  <ng-template #noAnimals> </ng-template>
 </div>

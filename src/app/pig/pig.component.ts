@@ -15,7 +15,7 @@ import { PigService } from '../services/pig.service';
 export class PigComponent implements OnInit {
   imageUrl: string = 'assets/images/pig.jpg';
   happyImageUrl: string = 'assets/images/happypig.jpg';
-  status: string = '';
+  status: string = 'Loading...';
   type: string = 'Farm Pig';
   initialStatus: string = '';
   putinStatus: string = '';
