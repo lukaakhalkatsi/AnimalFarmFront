@@ -32,7 +32,6 @@ export class PigComponent implements OnInit {
   ngOnInit(): void {
     this.pigService.getPigData().subscribe(
       (data) => {
-        console.log(data);
         this.status = data.initial;
         this.putinStatus = data.putin;
         this.initialStatus = data.initial;
@@ -59,7 +58,6 @@ export class PigComponent implements OnInit {
     if (this.imageUrl === 'assets/images/putin.jpg') {
       this.pigService.sendMessage('putin').subscribe(
         (response) => {
-          console.log('Message sent successfully:', response);
           this.playAudio(response.audioUrl);
         },
         (error) => {
@@ -72,7 +70,6 @@ export class PigComponent implements OnInit {
     if (this.imageUrl === 'assets/images/pig.jpg') {
       this.pigService.sendMessage('georgia').subscribe(
         (response) => {
-          console.log('Message sent successfully:', response);
           this.playAudio(response.audioUrl);
         },
         (error) => {
@@ -104,7 +101,6 @@ export class PigComponent implements OnInit {
       source.connect(this.audioContext.destination);
 
       source.start();
-      console.log('Audio playing...');
 
       this.currentSource = source;
       this.isPlaying = true;
@@ -127,7 +123,6 @@ export class PigComponent implements OnInit {
       source.connect(feedAudioContext.destination);
 
       source.start();
-      console.log('Playing happy sound...');
 
       source.onended = () => {
         feedAudioContext.close();

@@ -39,7 +39,6 @@ export class FoodDialogComponent {
   sendFoodSelection(food: string): void {
     this.foodService.sendFoodSelection(this.data.id, food).subscribe(
       (response) => {
-        console.log(response);
         this.dialogRef.close({
           animalId: this.data.id,
           feedNumber: response.feedNumber,

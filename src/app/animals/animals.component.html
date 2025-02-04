@@ -15,10 +15,6 @@
     class="cards-wrapper"
   >
     <mat-card *ngFor="let animal of animals" class="animal-card">
-      <mat-card-header>
-        <mat-card-title>{{ animal.name }}</mat-card-title>
-      </mat-card-header>
-
       <img mat-card-image [src]="animal.imageUrl" alt="{{ animal.name }}" />
 
       <mat-card-content>
