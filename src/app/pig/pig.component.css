@@ -60,6 +60,14 @@
   border-radius: 12px 12px 0 0;
 }
 
+.error-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
 .hidden {
   display: none;
 }

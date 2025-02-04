@@ -26,6 +26,7 @@ export class PigComponent implements OnInit {
   currentSource: AudioBufferSourceNode | null = null;
   isPlaying: boolean = false;
   isPlayPauseIconVisible: boolean = false;
+  errorMessage: string = '';
 
   constructor(private pigService: PigService) {}
 
@@ -62,6 +63,7 @@ export class PigComponent implements OnInit {
         },
         (error) => {
           console.error('Error sending message:', error);
+          this.errorMessage = 'Something went wrong. Please try again later.';
         }
       );
       return;
@@ -74,6 +76,7 @@ export class PigComponent implements OnInit {
         },
         (error) => {
           console.error('Error sending message:', error);
+          this.errorMessage = 'Something went wrong. Please try again later.';
         }
       );
     }
