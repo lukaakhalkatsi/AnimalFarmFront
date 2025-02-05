@@ -1,59 +1,131 @@
-# Frontend
+# Frontend Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+## 🚀 Project Overview
 
-## Development server
+This is the frontend of the application built to interact with the backend API. It is responsible for rendering the user interface and handling user interactions. The main essence of the application lies in the fact that various animals and birds wearing pantsuits are presented along a large picture of the central figure - the main pig. The user of the site can interact with these animals and the image of the main pig.
 
-To start a local development server, run:
+## 📦 Installation
 
-```bash
-ng serve
-```
+### Prerequisites
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Make sure you have the following installed on your system:
 
-## Code scaffolding
+- **Node.js** (>= 16.x.x)
+- **npm** (comes with Node.js) or **yarn**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Clone the Repository
 
 ```bash
-ng generate --help
+git clone https://github.com/lukaakhalkatsi/AnimalFarmFront.git
+cd your-frontend-repo
 ```
 
-## Building
-
-To build the project run:
+### Install Dependencies
 
 ```bash
-ng build
+npm install
+# OR
+yarn install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🏗️ Project Structure
 
-## Running unit tests
+```
+├── src/              # Main source code
+│   ├── app/         # Angular application modules
+│   │   ├── components/  # Reusable components
+│   │   ├── services/     # API calls and data handling
+│   │   ├── app.component.html # Root component
+│   │   ├── app.component.ts # Root component
+│   │   ├── app.config.ts # Root configuration
+│   ├── assets/       # Static assets (e.g., images, styles)
+│   ├── environments/ # Environment configurations
+│   ├── main.ts       # Main entry point
+│   ├── styles.css    # Global styles
+│
+├── angular.json      # Angular project configuration
+├── package.json      # Project dependencies & scripts
+├── README.md         # Project documentation
+```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `env` folder in the src and configure the required variables
+
+## 🚀 Running the Project
+
+### Development Mode
 
 ```bash
-ng test
+npm start
+# OR
+yarn start
 ```
 
-## Running end-to-end tests
+Runs the app in development mode. Open `http://localhost:3000/` to view it in the browser.
 
-For end-to-end (e2e) testing, run:
+### Production Build
 
 ```bash
-ng e2e
+npm run build
+# OR
+yarn build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Creates an optimized production build of the app.
 
-## Additional Resources
+## 🌍 Deployment
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Deploy to Vercel
+
+1. Install Vercel CLI:
+   ```bash
+   npm install -g vercel
+   ```
+2. Run deployment command:
+   ```bash
+   vercel
+   ```
+
+### Deploy to Netlify
+
+1. Install Netlify CLI:
+   ```bash
+   npm install -g netlify-cli
+   ```
+2. Run deployment command:
+   ```bash
+   netlify deploy
+   ```
+
+## 📜 API Endpoints Used
+
+| Method | Endpoint                 | Description            |
+| ------ | ------------------------ | ---------------------- |
+| GET    | `/api/animals`           | Fetches animals list   |
+| POST   | `/api/animals/{id}/feed` | Feeding Animals        |
+| GET    | `/api/bidzina/status`    | Fetches bidzina status |
+| POST   | `/api/music/toggle`      | Toggles music state    |
+
+## ✨ Features
+
+- 🎨 Modern UI
+- 🔥 Fast and Responsive
+- 📡 API Integration
+- 🚀 Deployed and Ready for Production
+
+## 🛠️ Technologies Used
+
+- **Angular** (Frontend Framework)
+- **CSS** (Styling)
+- **Unit Tests** (For Testing)
+
+## 🤝 Contributing
+
+Feel free to contribute by submitting pull requests or reporting issues.
+
+## 📄 License
+
+This project is licensed under the MIT License.

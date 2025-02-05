@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FoodService } from '../services/food.service';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-food-dialog',
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatListModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './food-dialog.component.html',
   styleUrl: './food-dialog.component.css',
@@ -26,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class FoodDialogComponent {
   foodList: string[] = ['საკენკი', 'ჩალა', 'თივა', 'ხორცხი', 'ბალახი'];
   selectedFood: string | null = null;
+  isLoading: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<FoodDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string; id: string },
@@ -37,8 +40,10 @@ export class FoodDialogComponent {
   }
 
   sendFoodSelection(food: string): void {
+    this.isLoading = true;
     this.foodService.sendFoodSelection(this.data.id, food).subscribe(
       (response) => {
+        this.isLoading = false;
         this.dialogRef.close({
           animalId: this.data.id,
           feedNumber: response.feedNumber,
@@ -47,6 +52,7 @@ export class FoodDialogComponent {
       },
       (error) => {
         console.error('❌ Error sending food:', error);
+        this.isLoading = false;
       }
     );
   }

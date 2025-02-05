@@ -21,6 +21,7 @@
     *ngIf="selectedFood"
     (click)="sendFoodSelection(selectedFood)"
   >
-    Feed {{ data.name }}
+    <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+    <span *ngIf="!isLoading">Feed {{ data.name }}</span>
   </button>
 </mat-dialog-actions>
